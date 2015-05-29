@@ -247,5 +247,9 @@ switch ($axAction) {
 
         echo $view->render("floaters/add_edit_activity.php");
     break;
-    
+    case 'comment_is_required':
+        if ($axValue == 'comment_is_required') {
+            echo $view->render("floaters/comment_is_required.php");
+        }
+        break;
 }

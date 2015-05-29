@@ -2,7 +2,7 @@
     background: url("grfx/g3_buzzer_display.png") no-repeat;
     color:#51534A;
     overflow:hidden;
-    width:224px;
+    width:450px;
     height:69px;
     display:block;
     position:absolute;
@@ -14,6 +14,29 @@
 }
 
 #selector .preselection {
+    width:205px;
+    height:52px;
+    padding:7px 10px 0 ;
+    overflow:hidden;
+    line-height:13px;
+}
+
+#textfields-selector {
+    background: url("grfx/g3_buzzer_display.png") no-repeat;
+    color:#51534A;
+    overflow:hidden;
+    width:224px;
+    height:69px;
+    display:block;
+    position:absolute;
+    top:11px;
+    right:95px;
+    font-size:11px;
+    z-index:20;
+
+}
+
+.textfields {
     width:205px;
     height:52px;
     padding:7px 10px 0 ;
@@ -35,10 +58,14 @@
     color:red;
 }
 
-#selector strong.short {
+#selector strong.short, #textfields-selector strong.short {
     color:#BEBDB3;
     display:block;
     float:left;
     width:13px;
     height:13px;
+}
+
+#textfields-selector .tracking-number {
+    width: 100px;height:10px; margin-bottom: 2px
 }

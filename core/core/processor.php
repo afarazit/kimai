@@ -125,9 +125,22 @@ switch ($axAction) {
      */
     case 'startRecord':
         if (isset($kga['customer'])) die();
-    
-        $IDs = explode('|',$axValue);
-        $newID = $database->startRecorder($IDs[0],$IDs[1],$id, $_REQUEST['startTime']);
+        error_reporting(-1);
+        ini_set('display_errors', 'On');
+        $params = explode('|',$axValue);
+
+        $comment = isset($params[3]) ? $params[3]: null;
+
+        if(isset($params[2]) && $params[2] != "")
+        {
+            $trackingNumber = $params[2];
+        }
+        else
+        {
+            $trackingNumber = null;
+        }
+
+        $newID = $database->startRecorder($params[0],$params[1],$id, $_REQUEST['startTime'],$trackingNumber, $comment);
         echo json_encode(array(
           'id' =>  $newID
         ));

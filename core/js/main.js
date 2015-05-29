@@ -329,17 +329,24 @@ function updateTimeframeWarning() {
 
 
 
-
 // ----------------------------------------------------------------------------------------
 // starts a new recording when the start-buzzer is hidden
 //
-function startRecord(projectID,activityID,userID) {
+function startRecord(projectID,activityID,userID,trackingNumber,comment) {
     hour=0;min=0;sec=0;
     now = Math.floor(((new Date()).getTime())/1000);
     offset = 0;
     startsec = now;
     show_stopwatch();
     value = projectID +"|"+ activityID;
+    if(typeof trackingNumber !== "undefined")
+    {
+        value += "|" + trackingNumber;
+    }
+    if(typeof comment !== "undefined")
+    {
+        value += "|" + comment
+    }
     $.post("processor.php", { axAction: "startRecord", axValue: value, id: userID, startTime: now},
         function(response){
             var data = jQuery.parseJSON(response);
@@ -349,7 +356,6 @@ function startRecord(projectID,activityID,userID) {
         }
     );
 }
-
 
 
 // ----------------------------------------------------------------------------------------
@@ -413,12 +419,24 @@ function buzzer() {
 
   if (currentRecording > -1) {
       stopRecord();
+      clearTextfields();
       currentRecording=0;
     } else {
-        setTimeframe(undefined,new Date());
-        startRecord(selected_project,selected_activity,userID);
-        $('#buzzer').addClass('disabled');
+        var trackingNumber = $('input[name=trackingNumber]').val();
+        var comment = $('input[name=comment]').val();
+        if(comment == "") {
+            floaterShow("floaters.php","comment_is_required","comment_is_required",0,450);
+        } else {
+            setTimeframe(undefined, new Date());
+            startRecord(selected_project, selected_activity, userID, trackingNumber, comment);
+            $('#buzzer').addClass('disabled');
+        }
     }
+}
+
+function clearTextfields() {
+    $('input[name=trackingNumber]').val('');
+    $('input[name=comment]').val('');
 }
 
 function buzzer_preselect_project(projectID,projectName,customerID,customerName,updateRecording) {

@@ -253,8 +253,15 @@
               <strong class="short"><?php echo $this->kga['lang']['selectedProjectLabel']?></strong><span class="selection" id="selected_project"><?php echo $this->escape($this->projectData['name'])?></span><br/>    
               <strong class="short"><?php echo $this->kga['lang']['selectedActivityLabel']?></strong><span class="selection" id="selected_activity"><?php echo $this->escape($this->activityData['name'])?></span><br/>    
           </div>
-        </div> 
-   
+        </div>
+        <div id="textfields-selector">
+            <div class="textfields">
+                <strong>Tracking number / Comment:</strong><br />
+                <strong class="short">#: </strong><input class="tracking-number" type="text" name="trackingNumber" value="" placeholder="Tracking number"><br />
+                <strong class="short">C: </strong><input style="height: 15px" name="comment" value="" placeholder="Comment (required)">
+            </div>
+        </div>
+
         <div id="stopwatch">
             <span class="watch"><span id="h">00</span>:<span id="m">00</span>:<span id="s">00</span></span>
         </div>
