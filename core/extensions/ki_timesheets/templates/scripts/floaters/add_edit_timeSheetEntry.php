@@ -1,4 +1,4 @@
-    <script type="text/javascript"> 
+    <script type="text/javascript">
     	var previousBudget = $('#budget').val();
         var previousUsed = 0;
         var previousApproved = 0;
@@ -153,8 +153,13 @@
                     ( !$('#end_day').val().match(ts_dayFormatExp) && $('#end_day').val() != '') ||
                     !$('#start_time').val().match(ts_timeFormatExp) ||
                     ( !$('#end_time').val().match(ts_timeFormatExp) && $('#end_time').val() != '')) {
-                  alert("<?php echo $this->kga['lang']['TimeDateInputError']?>");
-                  return false;
+                    alert("<?php echo $this->kga['lang']['TimeDateInputError']?>");
+                   return false;
+                }
+                if($('#floater_tabs #extended #comment').val() == '')
+                {
+                    alert("The Comment (Advanced tab) is required");
+                    return false;
                 }
 
                 var endTimeSet = $('#end_day').val() != '' || $('#end_time').val() != '';
@@ -499,7 +504,7 @@
 				<?php endif; ?>
 				   <li>
                         <label for="comment"><?php echo $this->kga['lang']['comment']?>:</label>
-                        <textarea id='comment' style="width:395px" class='comment' name='comment' cols='40' rows='5' tabindex='13'><?php echo $this->escape($this->comment)?></textarea>
+                        <textarea id='comment' style="width:395px" class='comment' name='comment' cols='40' rows='5' tabindex='13' placeholder='required'><?php echo $this->escape($this->comment)?></textarea>
                    </li>
                    
                    <li>

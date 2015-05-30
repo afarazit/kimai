@@ -422,10 +422,10 @@ function buzzer() {
       clearTextfields();
       currentRecording=0;
     } else {
-        var trackingNumber = $('input[name=trackingNumber]').val();
-        var comment = $('input[name=comment]').val();
+        var trackingNumber = $('#textfields-selector input[name=trackingNumber]').val();
+        var comment = $('#textfields-selector input[name=comment]').val();
         if(comment == "") {
-            floaterShow("floaters.php","comment_is_required","comment_is_required",0,450);
+            alert("The Comment field is required");
         } else {
             setTimeframe(undefined, new Date());
             startRecord(selected_project, selected_activity, userID, trackingNumber, comment);
